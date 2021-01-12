@@ -1,4 +1,3 @@
-let locations = [];
 
 function addMarker(bounds, coordinates, map, label) {
   var marker = new google.maps.Marker({
@@ -23,7 +22,7 @@ function generateMarkers(bounds, locations, map, labelNumber) {
   })
 }
 
-function initMap() {
+function initMap(locations) {
   const map = new google.maps.Map(document.getElementById("map"));
   let bounds = new google.maps.LatLngBounds();
   let labelNumber = 1;
@@ -31,7 +30,7 @@ function initMap() {
   map.fitBounds(bounds);
 }
 
-function initBreweryList() {
+function initBreweryList(locations) {
   $('#results').empty();
   $('#no-results').empty();
   locations.map(location => {
@@ -60,9 +59,8 @@ function getBreweries(zipCode) {
     })
     .then(responseJson => {
       if (responseJson.length > 0) {
-        locations = responseJson;
-        initMap();
-        initBreweryList();
+        initMap(responseJson);
+        initBreweryList(responseJson);
       }
       else {
         $('#map').addClass("hidden");
@@ -85,8 +83,4 @@ function handleFormSubmit() {
   });
 }
 
-function handleBreweryFinder() {
-  handleFormSubmit();
-}
-
-$(handleBreweryFinder);
+$(handleFormSubmit);
