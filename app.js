@@ -17,7 +17,7 @@ function generateMarkers(bounds, locations, map, labelNumber) {
       lng: Number(location.longitude)
     };
     if (location.latitude !== null || location.longitude !== null) {
-    let label = (labelNumber++).toString();
+      const label = (labelNumber++).toString();
       addMarker(bounds, coordinates, map, label);
     };
   })
@@ -33,6 +33,7 @@ function initMap() {
 
 function initBreweryList() {
   $('#results').empty();
+  $('#no-results').empty();
   locations.map(location => {
     if (location.latitude !== null || location.longitude !== null) {
       $('#results').append(
@@ -58,22 +59,29 @@ function getBreweries(zipCode) {
       throw new Error(response.statusText);
     })
     .then(responseJson => {
-      locations = responseJson;
-      console.log(locations);
-      initMap();
-      initBreweryList();
+      if (responseJson.length > 0) {
+        locations = responseJson;
+        initMap();
+        initBreweryList();
+      }
+      else {
+        $('#map').addClass("hidden");
+        $('#results').empty();
+        $('#no-results').append(
+          `No results found. Try another ZIP code.`
+        )
+      }
     }) 
     .catch(err => {
-      $('#js-error-message').text(`Something went wrong: ${err.message}`);
+      $('#error-message').text(`Something went wrong: ${err.message}`);
     });
 }
 
 function handleFormSubmit() {
   $('form').submit(event => {
     event.preventDefault();
-    const zipCode = $('#zip-code').val();
-    getBreweries(zipCode);
-    $('div').removeClass("hidden");
+    getBreweries($('#zip-code').val());
+    $('#map').removeClass("hidden");
   });
 }
 
