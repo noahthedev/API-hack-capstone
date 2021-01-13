@@ -17,7 +17,7 @@ html {
           rgba(0, 0, 0, 0.7), 
           rgba(0, 0, 0, 0.7)
         ),
-  url(images/brewery.jpg) no-repeat center center fixed; 
+  url(/images/brewery.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
