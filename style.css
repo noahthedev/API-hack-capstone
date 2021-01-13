@@ -22,8 +22,8 @@ header h1 {
   font-family: 'Montserrat Alternates', sans-serif;
 }
 
-main p {
-  text-align: center;
+ol {
+  text-align: left;
 }
 
 form {
@@ -44,7 +44,6 @@ form {
 
 #map {
   height: 500px;
-  width: 80%;
-  padding-left: 10px;
+  width: 90%;
 }
 
