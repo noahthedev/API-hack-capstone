@@ -3,7 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Brewery Finder</title>
+  <title>APIs for IPAs</title>
+  <link 
+    href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+    rel="stylesheet"
+    type="text/css"/>
   <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCYGmevMhpee5sWvZjwbKqIaLbY7nLZUWM&callback=initMap"
       defer
@@ -11,8 +15,9 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>Brewery Finder</h1>
+  <header id="header">
+    <h1>APIs for IPAs</h1>
+    <p> Welcome! This application will help you find breweries in your area. <br> To begin, enter your ZIP code in the form below. Cheers! </p>
   </header>
   <main>
     <form>
@@ -21,9 +26,11 @@
       <button type="submit">Find</button>
     </form>
     <p id="error-message"></p>
-    <div id="map" class="hidden"></div>
     <p id="no-results"></p>
-    <ol id="results"></ol>
+    <div class="flex-container">  
+      <div id="map" class="hidden"></div>
+      <ol id="results"></ol>
+    </div>
   </main>
   <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
   <script src="app.js"></script>

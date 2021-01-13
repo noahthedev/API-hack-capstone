@@ -1,3 +1,9 @@
+"use strict";
+
+// Global Variables
+
+const openBreweryURL = "https://api.openbrewerydb.org/breweries"
+
 
 function addMarker(bounds, coordinates, map, label) {
   var marker = new google.maps.Marker({
@@ -46,9 +52,16 @@ function initBreweryList(locations) {
   })
 }
 
+function handleNoResults() {
+  $('#map').addClass("hidden");
+  $('#results').empty();
+  $('#no-results').empty();
+  $('#no-results').append(`No results found. Try another ZIP code.`)
+}
+
 function getBreweries(zipCode) {
 
-  const url = "https://api.openbrewerydb.org/breweries?by_postal=" + zipCode;
+  const url = openBreweryURL + "?by_postal=" + zipCode;
 
   fetch(url)
     .then(response => {
@@ -63,11 +76,7 @@ function getBreweries(zipCode) {
         initBreweryList(responseJson);
       }
       else {
-        $('#map').addClass("hidden");
-        $('#results').empty();
-        $('#no-results').append(
-          `No results found. Try another ZIP code.`
-        )
+        handleNoResults()
       }
     }) 
     .catch(err => {
