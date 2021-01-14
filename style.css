@@ -11,7 +11,7 @@ body {
           rgba(0, 0, 0, 0.7), 
           rgba(0, 0, 0, 0.7)
         ),
-  url(brewery.jpg) no-repeat center center fixed; 
+  url(images/brewery.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -59,6 +59,7 @@ form {
   padding: 10px;
 }
 
+/* Desktop display specs*/
 @media all and (min-width: 600px) {
   .flex-container {
     flex-direction: row;

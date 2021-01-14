@@ -2,7 +2,7 @@
 
 // Global Variables
 
-const openBreweryURL = "https://api.openbrewerydb.org/breweries"
+const openBreweryURL = "https://api.openbrewerydb.org/breweries";
 
 
 function addMarker(bounds, coordinates, map, label) {
@@ -28,6 +28,7 @@ function generateMarkers(bounds, locations, map, labelNumber) {
   })
 }
 
+// initialize 
 function initMap(locations) {
   const map = new google.maps.Map(document.getElementById("map"));
   let bounds = new google.maps.LatLngBounds();
@@ -36,7 +37,7 @@ function initMap(locations) {
   map.fitBounds(bounds);
 }
 
-function initBreweryList(locations) {
+function generateBreweryList(locations) {
   $('#results').empty();
   $('#no-results').empty();
   locations.map(location => {
@@ -52,6 +53,7 @@ function initBreweryList(locations) {
   })
 }
 
+// return error message if no results in selected ZIP code
 function handleNoResults() {
   $('#map').addClass("hidden");
   $('#results').empty();
@@ -73,7 +75,7 @@ function getBreweries(zipCode) {
     .then(responseJson => {
       if (responseJson.length > 0) {
         initMap(responseJson);
-        initBreweryList(responseJson);
+        generateBreweryList(responseJson);
       }
       else {
         handleNoResults()
