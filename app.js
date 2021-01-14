@@ -4,7 +4,7 @@
 
 const openBreweryURL = "https://api.openbrewerydb.org/breweries";
 
-
+// create Google Maps marker object and extend bounds of map
 function addMarker(bounds, coordinates, map, label) {
   var marker = new google.maps.Marker({
      position: coordinates, 
@@ -15,6 +15,7 @@ function addMarker(bounds, coordinates, map, label) {
   return marker;
 }
 
+// create an array of formatted coordinates
 function generateMarkers(bounds, locations, map, labelNumber) {
   locations.map(location => { 
     const coordinates = {
@@ -28,7 +29,7 @@ function generateMarkers(bounds, locations, map, labelNumber) {
   })
 }
 
-// initialize 
+// initialize Google Map
 function initMap(locations) {
   const map = new google.maps.Map(document.getElementById("map"));
   let bounds = new google.maps.LatLngBounds();
